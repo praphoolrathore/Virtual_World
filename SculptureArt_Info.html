@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sculpture Art Gallery </title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="Artists.css">
+    <style>
+        .dropdown-menu {
+            background-color: #fff; /* Background color */
+            border: 1px solid rgba(0, 0, 0, 0.15); /* Border color */
+        }
+        
+        .dropdown-menu a {
+            color: #000; /* Link color */
+            padding: 8px 16px; /* Padding around links */
+            display: block; /* Make links block-level for full-width */
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1; /* Hover background color */
+        }
+        
+        /* Custom styles for the boxed section */
+        .boxed-section {
+            background-color: #f7f7f7;
+            padding: 40px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Section -->
+   <header class="sticky top-0 bg-white shadow-md z-50">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand flex items-center"
+                href="Index.html">
+                <img src="img/14.jpg" alt="kunstmatrix.com" class="h-10 w-10 mr-2">
+                <span class="text-2xl font-bold text-gray-800">aRt Gallery</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html">
+                            <i class="fas fa-home mr-1"></i> Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-gray-600 hover:text-gray-800" href="#"
+                            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <i class="fas fa-palette mr-1"></i> Art Type
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item hover:bg-gray-100" href="DigitalArt.html">Digital Art</a>
+                            <a class="dropdown-item hover:bg-gray-100" href="TraditionalArt.html">Traditional
+                                Art</a>
+                            <a class="dropdown-item hover:bg-gray-100" href="SculptureArt.html">Sculpture Art</a>
+                            <a class="dropdown-item hover:bg-gray-100" href="ThreeDArt.html">3D Art</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item hover:bg-gray-100" href="#">Something else here</a>
+                        </div>
+                    </li>
+
+                    <!-- Artists -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="Artists.html">
+                            <i class="fas fa-users mr-1"></i> Artists
+                        </a>
+                    </li>
+
+                    <!-- About -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="About.html">
+                            <i class="fas fa-info-circle mr-1"></i> About
+                        </a>
+                    </li>
+
+                    <!-- Contact -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contact.html">
+                            <i class="fas fa-envelope mr-1"></i> Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="login.html" class="btn btn-outline-primary mx-2">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-danger">Logout</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+    <!-- Redesigned Heading Section -->
+    <section class="relative bg-gray-800 text-white py-20">
+        <div class="absolute inset-0 bg-cover bg-center opacity-50"
+            style="background-image: url('img/heading-bg.jpg');"></div>
+        <div class="relative container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">What is Sculpture Art?</h1>
+            <p class="text-lg md:text-xl font-light">------------------------------------------------</p>
+            <p class="text-lg md:text-xl font-light">Sculpture Art</p>
+            <p class="text-lg md:text-xl font-light">------------------------------------------------</p>
+        </div>
+    </section>
+
+    <!-- Gap Between Sections -->
+    <div class="py-12"></div>
+
+    <section class="container mx-auto py-12">
+        <div class="boxed-section">
+            <h2 class="max-w-3xl mx-auto text-center text-3xl font-semibold mb-4">What is Sculpture Art? </h2>
+            <p class="text-lg mb-8">Sculpture, an artistic form in which hard or plastic materials are worked into
+                three-dimensional art objects. The designs may be embodied in freestanding objects, in reliefs on
+                surfaces, or in environments ranging from tableaux to contexts that envelop the spectator. An enormous
+                variety of media may be used, including clay, wax, stone, metal, fabric, glass, wood, plaster, rubber,
+                and random “found” objects. Materials may be carved, modeled, molded, cast, wrought, welded, sewn,
+                assembled, or otherwise shaped and combined.
+
+                Sculpture is not a fixed term that applies to a permanently circumscribed category of objects or sets of
+                activities. It is, rather, the name of an art that grows and changes and is continually extending the
+                range of its activities and evolving new kinds of objects. The scope of the term was much wider in the
+                second half of the 20th century than it had been only two or three decades before, and in the fluid
+                state of the visual arts in the 21st century nobody can predict what its future extensions are likely to
+                be.
+
+                Certain features which in previous centuries were considered essential to the art of sculpture are not
+                present in a great deal of modern sculpture and can no longer form part of its definition. One of the
+                most important of these is representation. Before the 20th century, sculpture was considered a
+                representational art, one that imitated forms in life, most often human figures but also inanimate
+                objects, such as game, utensils, and books. Since the turn of the 20th century, however, sculpture has
+                also included nonrepresentational forms. It has long been accepted that the forms of such functional
+                three-dimensional objects as furniture, pots, and buildings may be expressive and beautiful without
+                being in any way representational; but it was only in the 20th century that nonfunctional,
+                nonrepresentational, three-dimensional works of art began to be produced.
+            </p>
+            <h3 class="max-w-3xl mx-auto text-center text-2xl font-semibold mb-4">History of Sculpture Art</h3>
+                <p class="text-lg mb-8">Before the 20th century, sculpture was considered primarily an art of solid form, or mass. It is true
+                that the negative elements of sculpture—the voids and hollows within and between its solid forms—have
+                always been to some extent an integral part of its design, but their role was a secondary one. In a
+                great deal of modern sculpture, however, the focus of attention has shifted, and the spatial aspects
+                have become dominant. Spatial sculpture is now a generally accepted branch of the art of sculpture.
+
+                It was also taken for granted in the sculpture of the past that its components were of a constant shape
+                and size and, with the exception of items such as Augustus Saint-Gaudens’s Diana (a monumental weather
+                vane), did not move. With the recent development of kinetic sculpture, neither the immobility nor
+                immutability of its form can any longer be considered essential to the art of sculpture.
+
+                Finally, sculpture since the 20th century has not been confined to the two traditional forming processes
+                of carving and modeling or to such traditional natural materials as stone, metal, wood, ivory, bone, and
+                clay. Because present-day sculptors use any materials and methods of manufacture that will serve their
+                purposes, the art of sculpture can no longer be identified with any special materials or techniques.
+
+                Through all these changes, there is probably only one thing that has remained constant in the art of
+                sculpture, and it is this that emerges as the central and abiding concern of sculptors: the art of
+                sculpture is the branch of the visual arts that is especially concerned with the creation of form in
+                three dimensions.
+
+                Sculpture may be either in the round or in relief. A sculpture in the round is a separate, detached
+                object in its own right, leading the same kind of independent existence in space as a human body or a
+                chair. A relief does not have this kind of independence. It projects from and is attached to or is an
+                integral part of something else that serves either as a background against which it is set or a matrix
+                from which it emerges.
+
+                The actual three-dimensionality of sculpture in the round limits its scope in certain respects in
+                comparison with the scope of painting. Sculpture cannot conjure the illusion of space by purely optical
+                means or invest its forms with atmosphere and light as painting can. It does have a kind of reality, a
+                vivid physical presence that is denied to the pictorial arts. The forms of sculpture are tangible as
+                well as visible, and they can appeal strongly and directly to both tactile and visual sensibilities.
+                Even the visually impaired, including those who are congenitally blind, can produce and appreciate
+                certain kinds of sculpture. It was, in fact, argued by the 20th-century art critic Sir Herbert Read that
+                sculpture should be regarded as primarily an art of touch and that the roots of sculptural sensibility
+                can be traced to the pleasure one experiences in fondling things.
+
+                All three-dimensional forms are perceived as having an expressive character as well as purely geometric
+                properties. They strike the observer as delicate, aggressive, flowing, taut, relaxed, dynamic, soft, and
+                so on. By exploiting the expressive qualities of form, a sculptor is able to create images in which
+                subject matter and expressiveness of form are mutually reinforcing. Such images go beyond the mere
+                presentation of fact and communicate a wide range of subtle and powerful feelings.
+
+                The aesthetic raw material of sculpture is, so to speak, the whole realm of expressive three-dimensional
+                form. A sculpture may draw upon what already exists in the endless variety of natural and man-made form,
+                or it may be an art of pure invention. It has been used to express a vast range of human emotions and
+                feelings from the most tender and delicate to the most violent and ecstatic.
+
+                All human beings, intimately involved from birth with the world of three-dimensional form, learn
+                something of its structural and expressive properties and develop emotional responses to them. This
+                combination of understanding and sensitive response, often called a sense of form, can be cultivated and
+                refined. It is to this sense of form that the art of sculpture primarily appeals.
+                </p>
+
+                
+            
+
+
+        </div>
+    </section>
+
+
+
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-gray-400 mt-8 py-8">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-16">
+                <!-- Centered the sections using flex -->
+                <!-- Logo and links section -->
+                <div class="space-y-4 text-center md:text-left"> <!-- Centered content -->
+                    <a href="#"><img alt="kunstmatrix.com logo" src="img/14.jpg" class="h-10 mx-auto mb-4" /></a>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">aRt Gallery</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter form section -->
+                <div class="space-y-4 text-center md:text-left max-w-sm">
+                    <!-- Centered content and limited width -->
+                    <div class="newsletter-form">
+                        <h4 class="widget-title text-xl font-semibold mb-2">Ready to Get Inspired?</h4>
+                        <div class="newsletter-text mb-4">
+                            <p>Get our newsletter delivered straight to your inbox to learn more about virtual
+                                Art Gallery, the creative process, and more.</p>
+                        </div>
+                        <form method="post" enctype="multipart/form-data" target="gform_ajax_frame_5" id="gform_5"
+                            action="/#gf_5" class="space-y-4">
+                            <div>
+                                <label for="input_5_1" class="sr-only">Email Address</label>
+                                <input name="input_1" id="input_5_1" type="email"
+                                    class="form-control block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    placeholder="Your Email Address" aria-invalid="false">
+                            </div>
+                            <div class="hidden">
+                                <label for="input_5_2" class="sr-only">Phone</label>
+                                <input name="input_2" id="input_5_2" type="text"
+                                    class="form-control block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    autocomplete="new-password">
+                            </div>
+                            <div>
+                                <input type="submit" id="gform_submit_button_5"
+                                    class="gform_button button block w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Links section -->
+                <div class="space-y-4 text-center md:text-left"> <!-- Centered content -->
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">Home</a></li>
+                        <li><a href="#" class="hover:text-white">Exhibition</a></li>
+                        <li><a href="#" class="hover:text-white">Artists</a></li>
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Social media and copyright section -->
+            <div class="mt-16 text-center"> <!-- Centered content and increased top margin -->
+                <p>&copy; 2023 Virtual Art Gallery. All rights reserved.</p>
+                <ul class="flex justify-center space-x-4 mt-2">
+                    <li><a rel="noreferrer nofollow" target="_blank" href="https://www.instagram.com/kunstmatrix/"
+                            class="text-gray-400 hover:text-white"><span class="km-icon-instagram"></span></a>
+                    </li>
+                    <li><a rel="noreferrer nofollow" target="_blank" href="https://www.tiktok.com/@kunstmatrix"
+                            class="text-gray-400 hover:text-white"><span class="km-icon-tiktok"></span></a></li>
+                    <li><a rel="noreferrer nofollow" target="_blank" href="https://www.youtube.com/kunstmatrix/"
+                            class="text-gray-400 hover:text-white"><span class="km-icon-youtube"></span></a>
+                    </li>
+                    <li><a rel="noreferrer nofollow" target="_blank" href="https://www.facebook.com/kunstmatrix/"
+                            class="text-gray-400 hover:text-white"><span class="km-icon-facebook"></span></a>
+                    </li>
+                    <li><a rel="noreferrer nofollow" target="_blank" href="https://www.twitter.com/kunstmatrix/"
+                            class="text-gray-400 hover:text-white"><span class="km-icon-twitter"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts.js"></script>
+    <!-- JavaScript to read query parameters and update content -->
+
+</body>
+
+</html>

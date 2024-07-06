@@ -1,0 +1,9 @@
+.image-holder {
+    height: 200px; /* Fixed height for consistency */
+}
+
+.image-holder img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

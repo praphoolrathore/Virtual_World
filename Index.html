@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Art Gallery</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .dropdown-menu {
+            background-color: #fff;
+            /* Background color */
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            /* Border color */
+        }
+
+        .dropdown-menu a {
+            color: #000;
+            /* Link color */
+            padding: 8px 16px;
+            /* Padding around links */
+            display: block;
+            /* Make links block-level for full-width */
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+            /* Hover background color */
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #000;
+            border-radius: 50%;
+            padding: 10px;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            background-color: #000;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            /* Spacing between items */
+            margin-bottom: 20px;
+            /* Spacing between rows */
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            width: 100%;
+            padding-top: 75%;
+            /* Aspect ratio of 4:3 */
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        
+        .mb-4 {
+            margin-bottom: 0rem !important;
+        }
+        .col-lg-6 {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Navigation Section -->
+    <header class="sticky top-0 bg-white shadow-md z-50">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand flex items-center"
+                    href="Index.html">
+                    <img src="img/14.jpg" alt="kunstmatrix.com" class="h-10 w-10 mr-2">
+                    <span class="text-2xl font-bold text-gray-800">aRt Gallery</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Index.html">
+                                <i class="fas fa-home mr-1"></i> Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-gray-600 hover:text-gray-800" href="#"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fas fa-palette mr-1"></i> Art Type
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item hover:bg-gray-100" href="DigitalArt.html">Digital Art</a>
+                                <a class="dropdown-item hover:bg-gray-100" href="TraditionalArt.html">Traditional
+                                    Art</a>
+                                <a class="dropdown-item hover:bg-gray-100" href="SculptureArt.html">Sculpture Art</a>
+                                <a class="dropdown-item hover:bg-gray-100" href="ThreeDArt.html">3D Art</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item hover:bg-gray-100" href="#">Something else here</a>
+                            </div>
+                        </li>
+
+                        <!-- Artists -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="Artists.html">
+                                <i class="fas fa-users mr-1"></i> Artists
+                            </a>
+                        </li>
+
+                        <!-- About -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="About.html">
+                                <i class="fas fa-info-circle mr-1"></i> About
+                            </a>
+                        </li>
+
+                        <!-- Contact -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contact.html">
+                                <i class="fas fa-envelope mr-1"></i> Contact
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="login.html" class="btn btn-outline-primary mx-2">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-outline-danger">Logout</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header -->
+    <header>
+        <section class="section-video">
+            <div class="section-video-media">
+                <video id="lead-video" muted autoplay loop playsinline preload="auto" class="w-100">
+                    <source src="img/13.mp4" media="all and (min-width: 768px)" type="video/mp4">
+                    <source src="img/13.mp4" media="all and (max-width: 767px)" type="video/mp4">
+                </video>
+            </div>
+        </section>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto py-8">
+        <!-- Slider -->
+        <section class="section-cards py-8 bg-white">
+            <div class="container mx-auto">
+                <div class="section-content text-center mb-8">
+                    <h2 class="text-3xl font-semibold">Art Pieces</h2>
+                </div>
+                <div class="slider-container relative">
+                    <div id="cardsSlider" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    <!-- Card 1 -->
+                                    <div
+                                        class="card bg-gray-50 shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105">
+                                        <div class="image-holder mb-4">
+                                            <img src="img/31.jpg" alt="Digital Art Exhibition"
+                                                class="w-full h-48 object-cover rounded-t-lg">
+                                        </div>
+                                        <div class="card-detail p-4">
+                                            <h4 class="card-title text-xl font-semibold mb-2 text-center">Digital Art
+                                            </h4>
+                                            <div class="button-wrap text-center">
+                                                <a href="E:/Programmer Point (PP)/Web Project/Example/DigitalArt_Info.html"
+                                                    class="button bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300">Learn
+                                                    More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card 2 -->
+                                    <div
+                                        class="card bg-gray-50 shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105">
+                                        <div class="image-holder mb-4">
+                                            <img src="img/32.jpg" alt="Traditional Art Exhibition"
+                                                class="w-full h-48 object-cover rounded-t-lg">
+                                        </div>
+                                        <div class="card-detail p-4">
+                                            <h4 class="card-title text-xl font-semibold mb-2 text-center">Traditional
+                                                Art</h4>
+                                            <div class="button-wrap text-center">
+                                                <a href="E:/Programmer Point (PP)/Web Project/Example/TraditionalArt_Info.html"
+                                                    class="button bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300">Learn
+                                                    More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card 3 -->
+                                    <div
+                                        class="card bg-gray-50 shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105">
+                                        <div class="image-holder mb-4">
+                                            <img src="img/33.jpg" alt="3D Art Exhibition"
+                                                class="w-full h-48 object-cover rounded-t-lg">
+                                        </div>
+                                        <div class="card-detail p-4">
+                                            <h4 class="card-title text-xl font-semibold mb-2 text-center">3D Art</h4>
+                                            <div class="button-wrap text-center">
+                                                <a href="E:/Programmer Point (PP)/Web Project/Example/ThreeDArt_Info.html"
+                                                    class="button bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300">Learn
+                                                    More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    <!-- Card 4 -->
+                                    <div
+                                        class="card bg-gray-50 shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105">
+                                        <div class="image-holder mb-4">
+                                            <img src="img/53.jpg" alt="Sculpture Art Exhibition"
+                                                class="w-full h-48 object-cover rounded-t-lg">
+                                        </div>
+                                        <div class="card-detail p-4">
+                                            <h4 class="card-title text-xl font-semibold mb-2 text-center">Sculpture Art
+                                            </h4>
+                                            <div class="button-wrap text-center">
+                                                <a href="E:/Programmer Point (PP)/Web Project/Example/SculptureArt_Info.html"
+                                                    class="button bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300">Learn
+                                                    More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card 5 -->
+                                    <div
+                                        class="card bg-gray-50 shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105">
+                                        <div class="image-holder mb-4">
+                                            <img src="img/67.jpg" alt="Sculpture Art Exhibition"
+                                                class="w-full h-48 object-cover rounded-t-lg">
+                                        </div>
+                                        <div class="card-detail p-4">
+                                            <h4 class="card-title text-xl font-semibold mb-2 text-center">Photography
+                                            </h4>
+                                            <div class="button-wrap text-center">
+                                                <a href="E:/Programmer Point (PP)/Web Project/Example/SculptureArt_Info.html"
+                                                    class="button bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300">Learn
+                                                    More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card 6 -->
+                                    <div
+                                        class="card bg-gray-50 shadow-lg rounded-lg overflow-hidden transition duration-500 transform hover:scale-105">
+                                        <div class="image-holder mb-4">
+                                            <img src="img/68.jpg" alt="Sculpture Art Exhibition"
+                                                class="w-full h-48 object-cover rounded-t-lg">
+                                        </div>
+                                        <div class="card-detail p-4">
+                                            <h4 class="card-title text-xl font-semibold mb-2 text-center">Computer Art
+                                            </h4>
+                                            <div class="button-wrap text-center">
+                                                <a href="E:/Programmer Point (PP)/Web Project/Example/SculptureArt_Info.html"
+                                                    class="button bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300">Learn
+                                                    More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Add more cards as needed -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="carousel-control-prev absolute top-0 bottom-0 left-0 flex items-center justify-center p-0 text-center border-0"
+                            type="button" data-bs-target="#cardsSlider" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button
+                            class="carousel-control-next absolute top-0 bottom-0 right-0 flex items-center justify-center p-0 text-center border-0"
+                            type="button" data-bs-target="#cardsSlider" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+                            <button type="button" data-bs-target="#cardsSlider" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#cardsSlider" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main class="container mx-auto py-8">
+    <section class="section-cards py-8 bg-white">
+    <div class="container mx-auto px-4 py-8">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="bg-light shadow-md rounded p-4">
+        <h1 class="text-4xl font-bold text-center mb-8">Art Gallery</h1>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="img/18.jpg" alt="Material Matter, Pace Gallery">
+                <div class="overlay">Material Matter, Pace Gallery</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/19.jpg" alt="Under Glass, Half Gallery">
+                <div class="overlay">Under Glass, Half Gallery</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/20.jpg" alt="Power Wall, Lehmann Maupin">
+                <div class="overlay">Power Wall, Lehmann Maupin</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/21.jpg" alt="Hope$Togetherness, Carpenters Workshop Gallery">
+                <div class="overlay">Hope$Togetherness, Carpenters Workshop Gallery</div>
+            </div>
+            <!-- <div class="gallery-item">
+                <img src="img/22.jpg" alt="Maria Helena Vieira da Silva, Di Donna">
+                <div class="overlay">Maria Helena Vieira da Silva, Di Donna</div>
+            </div> -->
+            <!-- Add more gallery items as needed -->
+        </div>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="img/35.jpg" alt="Bust of Nefertiti, 1345 BC">
+                <div class="overlay">Bust of Nefertiti, 1345 BC</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/36.jpg" alt="The Terracotta Army, 210–209 BC">
+                <div class="overlay">The Terracotta Army, 210–209 BC</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/37.jpg" alt="Laocoön and His Sons, Second Century BC">
+                <div class="overlay">Laocoön and His Sons, Second Century BC</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/38.jpg" alt="Gian Lorenzo Bernini, Ecstasy of Saint Teresa, 1647–52">
+                <div class="overlay">Gian Lorenzo Bernini, Ecstasy of Saint Teresa, 1647–52</div>
+            </div>
+            <!-- <div class="gallery-item">
+                <img src="img/39.jpg" alt="Edgar Degas, The Little Fourteen-Year-Old Dancer, 1881/1922">
+                <div class="overlay">Edgar Degas, The Little Fourteen-Year-Old Dancer, 1881/1922</div>
+            </div> -->
+            <!-- Add more gallery items as needed -->
+        </div>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="img/44.jpg" alt="Gond Painting">
+                <div class="overlay">Gond Painting</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/45.jpg" alt="Kalamkari Painting">
+                <div class="overlay">Kalamkari Painting</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/46.jpg" alt="Kerala Mural Painting">
+                <div class="overlay">Kerala Mural Painting</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/50.jpg" alt="Pichwai">
+                <div class="overlay">Pichwai</div>
+            </div>
+            <!-- <div class="gallery-item">
+                <img src="img/51.jpg" alt="Tanjore Paintings">
+                <div class="overlay">Tanjore Paintings</div>
+            </div> -->
+            <!-- Add more gallery items as needed -->
+        </div>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="img/54.jpg" alt="Synopsis">
+                <div class="overlay">Synopsis</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/55.jpg" alt="The Crevasse by Edgar Mueller">
+                <div class="overlay">The Crevasse by Edgar Mueller</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/56.jpg" alt="Ice Age by Edgar Mueller">
+                <div class="overlay">Ice Age by Edgar Mueller</div>
+            </div>
+            <div class="gallery-item">
+                <img src="img/57.jpg" alt="Reflections by Kurt Wenner">
+                <div class="overlay">Reflections by Kurt Wenner</div>
+            </div>
+            <!-- <div class="gallery-item">
+                <img src="img/58.jpg" alt="Dies Irae by Kurt Wenner">
+                <div class="overlay">Dies Irae by Kurt Wenner</div>
+            </div> -->
+            <!-- Add more gallery items as needed -->
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+    <!-- Get Inspired Section -->
+    <section class="section-cards py-8 bg-white">
+        <div class="container mx-auto">
+            <div class="section-content text-center mb-8">
+                <h2 class="text-3xl font-semibold">Get Inspired</h2>
+                <p class="text-lg">Build the life you love. Learn more about us:</p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="row g-4 justify-content-center">
+                    <!-- Card 1 -->
+                    <div class="col-md-4">
+                        <div class="card bg-gray-50 shadow-md rounded-lg">
+                            <div class="image-holder mb-4">
+                                <img src="https://thefusioneer.com/wp-content/uploads/2021/08/what_is_fusioneering.svg"
+                                    alt="What Is Fusioneering?" class="w-full h-48 object-cover rounded-t-lg">
+                            </div>
+                            <div class="card-detail p-4">
+                                <h4 class="card-title text-xl font-semibold mb-2">What Us?</h4>
+                                <div class="card-content mb-4">
+                                    <p>Why pick which passion you should follow? We allow you to cultivate many
+                                        interests into something innovative and revolutionary.</p>
+                                </div>
+                                <div class="button-wrap text-center">
+                                    <a href="#" class="button bg-blue-500 text-white py-2 px-4 rounded-lg">Learn
+                                        More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="col-md-4">
+                        <div class="card bg-gray-50 shadow-md rounded-lg">
+                            <div class="image-holder mb-4">
+                                <img src="https://thefusioneer.com/wp-content/uploads/2021/09/fusioneering-card-1.jpeg"
+                                    alt="Experience The Magic" class="w-full h-48 object-cover rounded-t-lg">
+                            </div>
+                            <div class="card-detail p-4">
+                                <h4 class="card-title text-xl font-semibold mb-2">Experience The Magic</h4>
+                                <div class="card-content mb-4">
+                                    <p>Meet Paul and explore how blending your interests can empower you to follow your
+                                        enthusiasm and bring your passions to life.</p>
+                                </div>
+                                <div class="button-wrap text-center">
+                                    <a href="#" class="button bg-blue-500 text-white py-2 px-4 rounded-lg">Learn
+                                        More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Services Section -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-semibold">Premium Services</h2>
+                <p class="text-gray-600">Enhance your experience with our premium offerings.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                    <div class="icon mb-4 text-indigo-500">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 8c-3.87 0-7 3.13-7 7s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 0V4m0 4a4 4 0 100 8 4 4 0 000-8zm0 4h4">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Custom Art Consultations</h3>
+                    <p class="text-gray-600">Personalized advice and recommendations from art experts.</p>
+                </div>
+                <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                    <div class="icon mb-4 text-indigo-500">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 8c-3.87 0-7 3.13-7 7s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 0V4m0 4a4 4 0 100 8 4 4 0 000-8zm0 4h4">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Virtual Gallery Tours</h3>
+                    <p class="text-gray-600">Exclusive access to guided tours of our virtual art galleries.</p>
+                </div>
+                <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                    <div class="icon mb-4 text-indigo-500">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 8c-3.87 0-7 3.13-7 7s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 0V4m0 4a4 4 0 100 8 4 4 0 000-8zm0 4h4">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Art Investment Insights</h3>
+                    <p class="text-gray-600">Stay ahead with the latest trends and investment opportunities in the art
+                        world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="home" class="relative bg-cover bg-center py-20"
+        style="background-image: url('img/art-gallery-bg.jpg');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative container mx-auto px-4 text-center text-white">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Explore the World of Art</h2>
+            <p class="text-lg md:text-xl font-light mb-6">Welcome to our virtual art gallery, where you can immerse
+                yourself in a world of creativity and expression.</p>
+            <a href="#gallery" class="btn btn-primary btn-lg">Start Exploring</a>
+        </div>
+    </section>
+
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-gray-400 mt-8 py-8">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-16">
+                <!-- Centered the sections using flex -->
+                <!-- Logo and links section -->
+                <div class="space-y-4 text-center md:text-left"> <!-- Centered content -->
+                    <a href="#"><img alt="kunstmatrix.com logo" src="img/14.jpg" class="h-10 mx-auto mb-4" /></a>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">aRt Gallery</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter form section -->
+                <div class="space-y-4 text-center md:text-left max-w-sm"> <!-- Centered content and limited width -->
+                    <div class="newsletter-form">
+                        <h4 class="widget-title text-xl font-semibold mb-2">Ready to Get Inspired?</h4>
+                        <div class="newsletter-text mb-4">
+                            <p>Get our newsletter delivered straight to your inbox to learn more about virtual Art
+                                Gallery, the creative process, and more.</p>
+                        </div>
+                        <form method="post" enctype="multipart/form-data" target="gform_ajax_frame_5" id="gform_5"
+                            action="/#gf_5" class="space-y-4">
+                            <div>
+                                <label for="input_5_1" class="sr-only">Email Address</label>
+                                <input name="input_1" id="input_5_1" type="email"
+                                    class="form-control block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    placeholder="Your Email Address" aria-invalid="false">
+                            </div>
+                            <div class="hidden">
+                                <label for="input_5_2" class="sr-only">Phone</label>
+                                <input name="input_2" id="input_5_2" type="text"
+                                    class="form-control block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    autocomplete="new-password">
+                            </div>
+                            <div>
+                                <input type="submit" id="gform_submit_button_5"
+                                    class="gform_button button block w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Links section -->
+                <div class="space-y-4 text-center md:text-left"> <!-- Centered content -->
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">Home</a></li>
+                        <li><a href="#" class="hover:text-white">Exhibition</a></li>
+                        <li><a href="#" class="hover:text-white">Artists</a></li>
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Social media and copyright section -->
+            <div class="mt-16 text-center"> <!-- Centered content and increased top margin -->
+                <p>&copy; 2023 Virtual Art Gallery. All rights reserved.</p>
+                <ul class="flex justify-center space-x-4 mt-2">
+                    <li><a rel="noreferrer nofollow" target="_blank" href="https://www.instagram.com/kunstmatrix/"
+                            class="text-gray-400 hover:text-white"><span class="km-icon-instagram"></span></a></li>
+                    <li><a rel="noreferrer nofollow" target="_blank" href="https://www.tiktok.com/@kunstmatrix"
+                            class="text-gray-400 hover:text-white"><span class="km-icon-tiktok"></span></a></li>
+                    <li><a rel="noreferrer nofollow" target="_blank" href="https://www.youtube.com/kunstmatrix/"
+                            class="text-gray-400 hover:text-white"><span class="km-icon-youtube"></span></a></li>
+                    <li><a rel="noreferrer nofollow" target="_blank" href="https://www.facebook.com/kunstmatrix/"
+                            class="text-gray-400 hover:text-white"><span class="km-icon-facebook"></span></a></li>
+                    <li><a rel="noreferrer nofollow" target="_blank" href="https://www.twitter.com/kunstmatrix/"
+                            class="text-gray-400 hover:text-white"><span class="km-icon-twitter"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <!-- Custom JS -->
+    <script src="scripts.js"></script>
+    <script>
+        document.querySelector('.carousel-control-prev').addEventListener('click', function () {
+            $('#cardsSlider').carousel('prev');
+        });
+
+        document.querySelector('.carousel-control-next').addEventListener('click', function () {
+            $('#cardsSlider').carousel('next');
+        });
+    </script>
+
+</body>
+
+</html>

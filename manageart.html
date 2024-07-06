@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Art Products - Art Gallery Management System</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        .sidebar {
+            min-height: 100vh;
+        }
+
+        .card {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <a class="navbar-brand flex items-center p-3" href="#">
+                            <img src="img/14.jpg" alt="kunstmatrix.com" class="h-10 w-10 mr-2">
+                            <span class="text-2xl font-bold text-gray-800">aRt Gallery</span>
+                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" href="dashboard.html">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="ManageUser.html">
+                                <i class="fas fa-users"></i> Users
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="manageart.html">
+                                <i class="fas fa-palette"></i>  Artwork
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">
+                                <i class="fas fa-dollar-sign"></i> Sales
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="add-page.html">
+                                <i class="fas fa-file-alt"></i> Page
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="Report.html">
+                                <i class="fas fa-chart-line"></i> Reports
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">
+                                <i class="fas fa-cogs"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+             
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Manage Art Products</h1>
+                </div>
+
+                <div class="mb-4">
+                    <button id="add-artwork-btn" class="btn btn-primary">Add Artwork</button>
+                </div>
+
+                <!-- Add Artwork Form -->
+                <div id="add-artwork-form" class="hidden mb-5">
+                    <form id="artwork-form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="product-name" class="font-bold">Product Name</label>
+                            <input type="text" id="product-name" name="product_name" class="form-control" required>
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="product-description" class="font-bold">Product Description</label>
+                            <textarea id="product-description" name="product_description" class="form-control" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="product-price" class="font-bold">Product Price</label>
+                            <input type="number" id="product-price" name="product_price" class="form-control" required>
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="product-image" class="font-bold">Product Image</label>
+                            <input type="file" id="product-image" name="product_image" class="form-control-file" required>
+                        </div>
+                        <div class="form-group mt-4">
+                            <button type="submit" class="btn btn-primary w-full py-2">Add Product</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm" id="artworksTable">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Artworks will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const artworksTableBody = document.getElementById('artworksTable').getElementsByTagName('tbody')[0];
+            const addArtworkForm = document.getElementById('add-artwork-form');
+            const addArtworkBtn = document.getElementById('add-artwork-btn');
+            let artworks = JSON.parse(localStorage.getItem('artworks')) || [];
+            let currentEditingId = null;
+
+            function renderArtworks() {
+                artworksTableBody.innerHTML = '';
+                artworks.forEach(artwork => {
+                    const row = artworksTableBody.insertRow();
+                    row.innerHTML = `
+                        <td><img src="${artwork.image}" class="img-thumbnail" alt="${artwork.name}" width="100"></td>
+                        <td>${artwork.name}</td>
+                        <td>${artwork.description}</td>
+                        <td>$${artwork.price}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="editArtwork(${artwork.id})">Edit</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteArtwork(${artwork.id})">Delete</button>
+                        </td>
+                    `;
+                });
+            }
+
+            window.deleteArtwork = function(id) {
+                artworks = artworks.filter(artwork => artwork.id !== id);
+                localStorage.setItem('artworks', JSON.stringify(artworks));
+                renderArtworks();
+            };
+
+            window.editArtwork = function(id) {
+                const artwork = artworks.find(art => art.id === id);
+                if (artwork) {
+                    currentEditingId = id;
+                    document.getElementById('product-name').value = artwork.name;
+                    document.getElementById('product-description').value = artwork.description;
+                    document.getElementById('product-price').value = artwork.price;
+                    // Note: Editing image is more complex and not included in this example
+
+                    addArtworkForm.classList.remove('hidden');
+                    addArtworkBtn.classList.add('hidden');
+
+                    document.getElementById('artwork-form').onsubmit = function(event) {
+                        event.preventDefault();
+                        const formData = new FormData(this);
+                        artwork.name = formData.get('product_name');
+                        artwork.description = formData.get('product_description');
+                        artwork.price = formData.get('product_price');
+                        if (formData.get('product_image').size > 0) {
+                            artwork.image = URL.createObjectURL(formData.get('product_image'));
+                        }
+
+                        localStorage.setItem('artworks', JSON.stringify(artworks));
+                        renderArtworks();
+                        addArtworkForm.classList.add('hidden');
+                        addArtworkBtn.classList.remove('hidden');
+                        this.reset();
+                        this.onsubmit = addArtworkHandler;
+                    };
+                }
+            };
+
+            addArtworkBtn.addEventListener('click', function() {
+                addArtworkForm.classList.remove('hidden');
+                addArtworkBtn.classList.add('hidden');
+            });
+
+            document.getElementById('artwork-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                const newArtwork = {
+                    id: Date.now(),
+                    name: formData.get('product_name'),
+                    description: formData.get('product_description'),
+                    price: formData.get('product_price'),
+                    image: URL.createObjectURL(formData.get('product_image'))
+                };
+                artworks.push(newArtwork);
+                localStorage.setItem('artworks', JSON.stringify(artworks));
+                renderArtworks();
+                this.reset();
+                addArtworkForm.classList.add('hidden');
+                addArtworkBtn.classList.remove('hidden');
+            });
+
+            // Initial render
+            renderArtworks();
+        });
+    </script>
+</body>
+</html>
